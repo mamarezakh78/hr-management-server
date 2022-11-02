@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { UserRole } from "src/core/enums";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { EmployeeEntity } from "./employee.entity";
 
 @Entity("user")
@@ -13,11 +14,13 @@ export class UserEntity {
     password: string;
 
     @Column()
-    role: string;
+    role: UserRole;
 
     @ManyToOne(type => EmployeeEntity, employee => employee.id, { eager: true })
-    employee: number;
+    employeeId: number;
 
+    @CreateDateColumn()
+    createDate: Date;
 }
 
 

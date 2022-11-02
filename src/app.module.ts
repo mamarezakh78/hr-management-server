@@ -4,6 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
+import { EmployeeModule } from './employee/employee.module';
+import { HttpErrorFilter } from './shared/http-error.filter';
+import { APP_FILTER } from '@nestjs/core';
 
 @Module({
     imports: [
@@ -26,9 +29,13 @@ import { UserModule } from './user/user.module';
             }),
             inject: [ConfigService]
     }),
-        UserModule
+        UserModule,
+        EmployeeModule
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [AppService, {
+        provide: APP_FILTER,
+        useClass: HttpErrorFilter
+    }],
 })
 export class AppModule { }

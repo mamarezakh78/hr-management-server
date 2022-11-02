@@ -11,25 +11,25 @@ export class EmployeeEntity {
     @Column({ length: 50 })
     lastName: string;
 
-    @Column({ length: 25, unique: true })
+    @Column({ length: 25, unique: true, nullable: true })
     personalCode: string;
 
     @Column({ length: 25, unique: true })
     nationalCode: string;
 
-    @Column({ length: 50 })
+    @Column({ length: 50, nullable: true })
     fatherName: string;
 
-    @Column({ length: 25 })
+    @Column({ length: 25, nullable: true })
     certificateNumber: string;
 
-    @Column({ length: 25 })
+    @Column({ length: 25, nullable: true })
     birthDate: string;
 
-    @Column({ length: 15 })
+    @Column({ length: 15, nullable: true })
     membership: string;
 
-    @Column({ length: 25 })
+    @Column({ length: 25, nullable: true })
     lastStatus: string;
 
     @Column({ length: 250, nullable: true })

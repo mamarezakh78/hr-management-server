@@ -1,7 +1,7 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserDto } from '../ِDtos/user.dto';
-import { UpdateUserDto } from '../ِDtos/update-user.dto';
+import { CreateUserDto } from '../dtos/user.dto';
+import { UpdateUserDto } from '../dtos/update-user.dto';
 import { UserEntity } from '../entities/user.entity';
 import { Repository } from 'typeorm';
 
@@ -12,7 +12,7 @@ export class UserService {
         @InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>,
     ) { }
 
-    async login(user: CreateUserDto) {
+    async  login(user: CreateUserDto) {
         const findUser = await this.userRepo.findOne({ where: { username: user.username, password: user.password } });
 
         if (!findUser) {
