@@ -3,7 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
 import { EmployeeModule } from './employee/employee.module';
 import { HttpErrorFilter } from './shared/http-error.filter';
 import { APP_FILTER } from '@nestjs/core';
@@ -29,7 +28,6 @@ import { APP_FILTER } from '@nestjs/core';
             }),
             inject: [ConfigService]
     }),
-        UserModule,
         EmployeeModule
     ],
     controllers: [AppController],
