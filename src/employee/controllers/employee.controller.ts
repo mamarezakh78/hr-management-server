@@ -6,8 +6,8 @@ import { EmployeeService } from '../services/employee.service';
 export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
 
-  @Post('register')
-  register(@Body(ValidationPipe) employeeDto: EmployeeDto){
-    return this.employeeService.register(employeeDto)
-  }
+  // @Post('register')
+  // register(@Body(ValidationPipe) employeeDto: EmployeeDto){
+  //   return this.employeeService.register(employeeDto)
+  // }
 }

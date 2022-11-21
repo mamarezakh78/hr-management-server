@@ -1,21 +1,23 @@
 import { IsNumber, IsString } from "class-validator";
 import { UserRole } from "src/core/enums";
 
-export class CreateUserDto {
-
-    @IsNumber()
-    id: number;
+export class RegisterUserEmployeeDto {
 
     @IsString()
-    username: string;
+    name: string;
+
+    @IsString()
+    lastName: string;
+
+    @IsString()
+    nationalCode: string;
 
     @IsString()
     password: string;
 
     @IsString()
+    confirmPassword: string;
+
+    @IsString()
     role: UserRole;
-
-    @IsNumber()
-    employeeId: number;
-
 }

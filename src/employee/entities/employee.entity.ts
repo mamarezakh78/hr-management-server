@@ -11,11 +11,11 @@ export class EmployeeEntity {
     @Column({ length: 50 })
     lastName: string;
 
-    @Column({ length: 25, unique: true, nullable: true })
-    personalCode: string;
-
     @Column({ length: 25, unique: true })
     nationalCode: string;
+
+    @Column({ length: 25, unique: true, nullable: true })
+    personalCode: string;
 
     @Column({ length: 50, nullable: true })
     fatherName: string;

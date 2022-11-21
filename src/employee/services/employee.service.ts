@@ -4,7 +4,7 @@ import { EmployeeEntity } from 'src/employee/entities/employee.entity';
 import { EmployeeDto } from 'src/employee/dtos/employee.dto';
 import { Repository } from 'typeorm';
 import { UserEntity } from 'src/employee/entities/user.entity';
-import { CreateUserDto } from 'src/employee/dtos/user.dto';
+import { RegisterUserEmployeeDto } from 'src/employee/dtos/user.dto';
 import { UserRole } from 'src/core/enums';
 
 @Injectable()
@@ -15,32 +15,32 @@ export class EmployeeService {
         @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>
     ) { }
 
-    async register(employeeDto: EmployeeDto) {
-        const repEmployee = await this.employeeRepository.findOne({ where: { nationalCode: employeeDto.nationalCode } });
+    // async register(employeeDto: EmployeeDto) {
+    //     const repEmployee = await this.employeeRepository.findOne({ where: { nationalCode: employeeDto.nationalCode } });
 
-        if (repEmployee) {
-            throw new HttpException("این کد ملی در سیستم وجود دارد.", HttpStatus.BAD_REQUEST);
-        }
-        else {
-            const employeeRes = await this.employeeRepository.save(employeeDto);
+    //     if (repEmployee) {
+    //         throw new HttpException("این کد ملی در سیستم وجود دارد.", HttpStatus.BAD_REQUEST);
+    //     }
+    //     else {
+    //         const employeeRes = await this.employeeRepository.save(employeeDto);
 
-            console.log(employeeRes);
+    //         console.log(employeeRes);
             
 
-            let userDto = new CreateUserDto();
-            userDto.id = 0;
-            userDto.username = employeeRes.nationalCode;
-            userDto.password = employeeRes.nationalCode;
-            userDto.role = UserRole.User;
-            userDto.employeeId = employeeRes.id;
+    //         let userDto = new RegisterUserEmployeeDto();
+    //         userDto.id = 0;
+    //         userDto.username = employeeRes.nationalCode;
+    //         userDto.password = employeeRes.nationalCode;
+    //         userDto.role = UserRole.User;
+    //         userDto.employeeId = employeeRes.id;
 
-            console.log(userDto);
+    //         console.log(userDto);
             
 
-            let user = await this.userRepository.create(userDto);
-            await this.userRepository.save(user);
+    //         let user = await this.userRepository.create(userDto);
+    //         await this.userRepository.save(user);
             
-            return new HttpException(employeeRes, HttpStatus.OK);
-        }
-    }
+    //         return new HttpException(employeeRes, HttpStatus.OK);
+    //     }
+    // }
 }

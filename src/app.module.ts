@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { EmployeeModule } from './employee/employee.module';
 import { HttpErrorFilter } from './shared/http-error.filter';
 import { APP_FILTER } from '@nestjs/core';
+import { MainService } from './shared/services/main.service';
 
 @Module({
     imports: [
@@ -27,13 +28,12 @@ import { APP_FILTER } from '@nestjs/core';
                 synchronize: true,
             }),
             inject: [ConfigService]
-    }),
+        }),
         EmployeeModule
     ],
     controllers: [AppController],
-    providers: [AppService, {
-        provide: APP_FILTER,
-        useClass: HttpErrorFilter
-    }],
+    providers: [AppService,
+        { provide: APP_FILTER, useClass: HttpErrorFilter }
+    ],
 })
 export class AppModule { }
