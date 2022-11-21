@@ -1,9 +1,11 @@
 import { UserRole } from "src/core/enums";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { EmployeeEntity } from "./employee.entity";
+import { BasicEntity } from "../../shared/entities/base.entity";
+import * as bcrypt from "bcrypt";
 
 @Entity("user")
-export class UserEntity {
+export class UserEntity extends BasicEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -19,8 +21,11 @@ export class UserEntity {
     @ManyToOne(type => EmployeeEntity, employee => employee.id, { eager: true })
     employeeId: number;
 
-    @CreateDateColumn()
-    createDate: Date;
+    @BeforeInsert()
+    async hashPassword() {
+        const salt = await bcrypt.genSaltSync();
+        this.password = await bcrypt.hash(this.password, salt);
+    }
 }
 
 

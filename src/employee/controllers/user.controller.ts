@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe } from '@nestjs/common';
 import { UserService } from '../services/user.service';
-import { RegisterUserEmployeeDto } from '../dtos/user.dto';
+import { RegisterUserEmployeeDto } from '../dtos/register-user.dto';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 
 @Controller('user')

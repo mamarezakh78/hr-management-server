@@ -4,7 +4,7 @@ import { EmployeeEntity } from 'src/employee/entities/employee.entity';
 import { EmployeeDto } from 'src/employee/dtos/employee.dto';
 import { Repository } from 'typeorm';
 import { UserEntity } from 'src/employee/entities/user.entity';
-import { RegisterUserEmployeeDto } from 'src/employee/dtos/user.dto';
+import { RegisterUserEmployeeDto } from 'src/employee/dtos/register-user.dto';
 import { UserRole } from 'src/core/enums';
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RegisterUserEmployeeDto } from '../dtos/user.dto';
+import { RegisterUserEmployeeDto } from '../dtos/register-user.dto';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { UserEntity } from '../entities/user.entity';
 import { Repository } from 'typeorm';
@@ -50,14 +50,13 @@ export class UserService {
 
     private async insertUser(userDto: RegisterUserEmployeeDto, insertedEmployee: EmployeeEntity) {
 
-        let user: Partial<UserEntity> = {
-            username: userDto.nationalCode,
-            password: userDto.password,
-            role: userDto.role,
-            employeeId: insertedEmployee.id
-        }
+        let user = new UserEntity()
+        user.username = userDto.nationalCode;
+        user.password = userDto.password;
+        user.role = userDto.role;
+        user.employeeId = insertedEmployee.id;
 
-        let res = await this.userRepository.save(user);
+        let res = await user.save()
 
         return res;
     }
